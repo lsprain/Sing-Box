@@ -1,0 +1,95 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "address": "fakeip",
+        "fakeip": {
+          "enabled": true,
+          "inet4_range": "8.0.0.0/8"
+        }
+      }
+    ],
+    "final": "fakeip"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "address": [
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "mtu": 1500,
+      "stack": "mixed",
+      "auto_route": true,
+      "strict_route": true,
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "0.0.0.0",
+      "listen_port": 1080,
+      "sniff": true,
+      "set_system_proxy": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "auto-proxy",
+      "default": "url-test",
+      "outbounds": [
+        "{all}"
+      ]
+    },
+    {
+      "type": "url-test",
+      "tag": "url-test",
+      "outbounds":  [
+        "{all}"
+      ],
+      "url": "http://cp.cloudflare.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "type": "socks",
+      "tag": "proxy-1",
+      "server": "node1.example.com",
+      "server_port": 1080,
+      "version": "5"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy-2",
+      "server": "node2.example.com",
+      "server_port": 8388,
+      "method": "chacha20-ietf-poly1305",
+      "password": "your-password"
+    },
+    {
+      "type": "direct",
+      "tag": "direct" 
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": ["mixed-in"]，
+        "outbound": "auto-proxy"
+      },
+      {
+        "ip_cidr": ["8.0.0.0/8"],
+        "outbound": "auto-proxy"
+      }
+    ],
+    "final": "auto-proxy",
+    "auto_detect_interface": true
+  }
+}
