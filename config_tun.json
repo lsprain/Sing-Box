@@ -75,14 +75,13 @@
       "sniff": true,
       "sniff_override_destination": true
     },
-    // 新增混合代理接口 (SOCKS5 + HTTP)
     {
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "0.0.0.0",
       "listen_port": 1080,
       "sniff": true,
-      "set_system_proxy": false  // 避免冲突，手动配置系统代理
+      "set_system_proxy": false
     }
   ],
   "outbounds": [
