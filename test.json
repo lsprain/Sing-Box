@@ -70,11 +70,88 @@
       "tag": "dns-out"
     },
     {
+      "tag": "🚀 节点选择",
       "type": "selector",
-      "tag": "auto-proxy",
       "outbounds": [
-        "♻️ 自动选择"
+        "🇭🇰 香港节点自动",
+        "🇯🇵 日本节点自动",
+        "🇺🇲 美国节点自动",
+        "🐸 手动切换",
+        "♻️ 自动选择",
+        "🎯 全球直连"
       ]
+    },
+    {
+      "tag": "🐸 手动切换",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+	  "filter": [
+        {
+          "action": "exclude",
+          "keywords": [
+            "网站|地址|剩余|过期|时间|有效|邀请|一元|yiyuanjichang"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "🇭🇰 香港节点自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇭🇰|HK|hk|香港|港|HongKong"
+          ]
+        }
+      ],
+	  "url": "http://cp.cloudflare.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "timeout": "5s"
+    },
+    {
+      "tag": "🇯🇵 日本节点自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇯🇵|JP|jp|日本|日|Japan"
+          ]
+        }
+      ],
+	  "url": "http://cp.cloudflare.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "timeout": "5s"
+    },
+    {
+      "tag": "🇺🇲 美国节点自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇺🇸|US|us|美国|美|United States"
+          ]
+        }
+      ],
+	  "url": "http://cp.cloudflare.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "timeout": "5s"
     },
     {
       "tag": "♻️ 自动选择",
@@ -92,7 +169,27 @@
       ],
       "url": "http://cp.cloudflare.com/generate_204",
       "interval": "5m",
-      "tolerance": 50
+      "tolerance": 50,
+      "timeout": "5s"
+    },
+    {
+      "tag": "GLOBAL",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+	  "filter": [
+        {
+          "action": "exclude",
+          "keywords": [
+            "网站|地址|剩余|过期|时间|有效|邀请|一元|yiyuanjichang"
+          ]
+        }
+      ],
+      "url": "http://cp.cloudflare.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "timeout": "5s"
     },
     {
       "type": "direct",
