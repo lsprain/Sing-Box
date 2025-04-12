@@ -66,6 +66,10 @@
   ],
   "outbounds": [
     {
+      "type": "direct"，  
+      "tag": "dns-out"
+    },
+    {
       "type": "selector",
       "tag": "auto-proxy",
       "default": "urltest",
