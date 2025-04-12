@@ -39,8 +39,7 @@
       "type": "tun",
       "tag": "tun-in",
       "address": [
-        "172.19.0.1/30",
-        "fdfe:dcba:9876::1/126"
+        "172.19.0.1/30"
       ],
       "mtu": 1500,
       "stack": "mixed",
@@ -60,7 +59,7 @@
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "0.0.0.0",
-      "listen_port": 1080,
+      "listen_port": "1080",
       "sniff": true,
       "set_system_proxy": false
     }
