@@ -72,7 +72,6 @@
     {
       "type": "selector",
       "tag": "auto-proxy",
-      "default": "urltest",
       "outbounds": [
         "♻️ 自动选择"
       ]
