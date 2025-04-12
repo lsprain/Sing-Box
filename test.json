@@ -29,7 +29,7 @@
       },
       {
         "address": "192.168.1.1:5304",
-        "detour": "dns-out" 
+        "detour": "dns-out"
       }
     ],
     "final": "fakeip"
@@ -53,7 +53,7 @@
       "type": "dns",
       "tag": "dns-in",
       "listen": "0.0.0.0",
-      "listen_port": 1053，
+      "listen_port": "1053",
       "sniff": true
     },
     {
@@ -74,7 +74,7 @@
         "♻️ 自动选择"
       ]
     },
-     {
+    {
       "tag": "♻️ 自动选择",
       "type": "urltest",
       "outbounds": [
@@ -90,25 +90,31 @@
       ],
       "url": "http://cp.cloudflare.com/generate_204",
       "interval": "5m",
-      "tolerance": 50,
+      "tolerance": 50
     },
     {
       "type": "direct",
-      "tag": "direct" 
+      "tag": "direct"
     }
   ],
   "route": {
     "rules": [
       {
-        "inbound": ["dns-in"],
+        "inbound": [
+          "dns-in"
+        ],
         "outbound": "dns-out"
       },
       {
-        "inbound": ["mixed-in"],
+        "inbound": [
+          "mixed-in"
+        ],
         "outbound": "auto-proxy"
       },
       {
-        "ip_cidr": ["8.0.0.0/8"],
+        "ip_cidr": [
+          "8.0.0.0/8"
+        ],
         "outbound": "auto-proxy"
       }
     ],
